@@ -13,6 +13,15 @@ slots:
     type: bool
     mappings:
       - type: from_llm
+  wifi_network:
+    type: bool
+    mappings:
+      - type: from_llm
+  encryption_option:
+    type: bool
+    mappings:
+      - type: from_llm
+
 
 responses:
   utter_ask_recipient:
@@ -24,14 +33,31 @@ responses:
   utter_ask_check_credentials:
     - text: "Did you check the credentials in the global.json?"
 
+
   utter_transfer_complete:
     - text: "All done. {amount} has been sent to {recipient}."
 
-  utter_include_wifi_network:
+  utter_ask_wifi_network:
     - text: "If the device is in its allocated state, did you include the WIFI network in the network section?"
   
   utter_check_global_json:
     - text: "Check credentials in the global.json"
+  
+  utter_include_the_wifi_network:
+    - text: "Include the WIFI network in the network section"
+  
+  utter_ask_encryption_option:
+    - text: "Does your WIFI access point provide a WPA2/3 encryption option?"
+  
+  utter_extract_the_logfile:
+    - text: "If your wifi problem is still not resolved, please extract the logfile from your device and send it to christian@infrafon.com"
+
+  utter_get_the_device_with_wpa2:
+    - text: "Get the decive with a WPA2/3 encryption option"
+  
+  utter_guided_process:
+    - text: "Would you like to be guided through that process?"
+
 
   utter_free_chitchat_response:
     - text: "placeholder"
@@ -42,6 +68,8 @@ responses:
           The assistant can help the user transfer money.
           The assitant can help the user to connect to the wifi
           The assitant can help the user to check credentials
+          The assitant can help the user to check wifi network
+          The assitant can help the user to check encryption option
           The assistant is helpful, creative, clever, and very friendly.
           The user is making small talk, and the assistant should respond, keeping things light.
           Context / previous conversation with the user:

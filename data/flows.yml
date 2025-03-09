@@ -15,13 +15,30 @@ flows:
         next:
           - if: slots.check_credentials
             then: 
-              - action: utter_include_wifi_network
-                next: END
+              - collect: wifi_network
+                next: 
+                  - if: slots.wifi_network
+                    then:
+                      - collect: encryption_option
+                        next: 
+                          - if: slots.encryption_option
+                            then:
+                              - action: utter_extract_the_logfile
+                              - link: log_file 
+                          - else:
+                            - action: utter_get_the_device_with_wpa2
+                              next: END
+                  - else:
+                      - action: utter_include_the_wifi_network
+                        next: END
           - else:
             - action: utter_check_global_json
               next: END
   
-      
+  log_file:
+    description: Help users to extract the logfile
+    steps:
+      - action: utter_guided_process    
 
 
   
