@@ -1,0 +1,27 @@
+flows:
+  transfer_money:
+    description: Help users send money to friends and family.
+    steps:
+      - collect: recipient
+      - collect: amount
+        description: the number of US dollars to send
+      - action: utter_transfer_complete
+
+
+  no_wifi:
+    description: Help users to check the credentials to connect to the wifi.
+    steps:
+      - collect: check_credentials
+        next:
+          - if: slots.check_credentials
+            then: 
+              - action: utter_include_wifi_network
+                next: END
+          - else:
+            - action: utter_check_global_json
+              next: END
+  
+      
+
+
+  
